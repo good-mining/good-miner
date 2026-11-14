@@ -15,7 +15,7 @@ CPUs, on Windows and Linux, and brings its own web dashboard.
 
 ## Why good-miner
 
-- **One miner for the whole rig.** NVIDIA, AMD, Intel and CPU in one program; different coins on different cards, a
+- **One miner good for the whole rig.** NVIDIA, AMD, Intel and CPU in one program; different coins on different cards, a
   CPU coin beside a GPU coin, all on one dashboard.
 - **It picks the coin for you.** `mine auto` ranks every coin by what *your* cards measured, the coin's live
   network figures and price, and your power cost, then mines the best one and switches when the ranking
