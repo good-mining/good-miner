@@ -18,6 +18,22 @@ even when numbers shift after you add or remove a card.
 
 Integrated graphics are left out unless you ask: `igpu` for one run, `config set igpu` for every run.
 
+## Intel graphics
+
+Intel GPUs mine through OpenCL. This is **experimental**: it is the newest hardware path and the least
+tested.
+
+- **Tested:** the integrated Arc graphics of a Core Ultra (Arrow Lake) processor on Windows, mining
+  Qubitcoin (qhash) at 147 MH/s.
+- **Built but not yet proven on Intel hardware:** most other GPU algorithms have an Intel build in the
+  release. If one fails or hashes wrong on your Intel GPU, the miner's own check refuses the bad shares
+  rather than sending them; please report it.
+- **Discrete Arc cards** should work the same way. We have not had one to test, so we do not claim it.
+- An integrated GPU shares the system's memory and power with the CPU: expect modest rates, and expect CPU
+  mining on the same machine to slow it down. It is opt-in for that reason (`igpu`).
+- Fan and clock control do not apply to Intel GPUs; the temperature guards still do where the driver
+  reports a temperature.
+
 ## Two coins on one rig
 
 ```text

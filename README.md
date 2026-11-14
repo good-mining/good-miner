@@ -1,7 +1,7 @@
 # good-miner
 
-A cryptocurrency miner written from scratch in Rust. One binary mines on NVIDIA cards, AMD cards and CPUs, on
-Windows and Linux, and brings its own web dashboard.
+A cryptocurrency miner written from scratch in Rust. One binary mines on NVIDIA, AMD and Intel graphics and on
+CPUs, on Windows and Linux, and brings its own web dashboard.
 
 > **Public beta.** It mines around the clock on our own rig, but it has seen few machines besides ours.
 > Expect rough edges, and tell us about them: [open an issue](../../issues/new/choose).
@@ -13,7 +13,7 @@ Windows and Linux, and brings its own web dashboard.
 
 ## Why good-miner
 
-- **One miner for the whole rig.** NVIDIA, AMD and CPU in one program; different coins on different cards, a
+- **One miner for the whole rig.** NVIDIA, AMD, Intel and CPU in one program; different coins on different cards, a
   CPU coin beside a GPU coin, all on one dashboard.
 - **It picks the coin for you.** `mine auto` ranks every coin by what *your* cards measured, the coin's live
   network figures and price, and your power cost, then mines the best one and switches when the ranking
@@ -22,6 +22,8 @@ Windows and Linux, and brings its own web dashboard.
 - **It looks after the hardware.** Per-card temperature guards, a watcher that restarts a crashed miner and
   stops one that is sending bad work, fans and clocks put back on exit.
 - **Runs the new cards.** RTX 50-series and RX 9070 are first-class, including on Linux.
+- **Intel graphics too.** Arc graphics, including the integrated GPU in Core Ultra processors, mine through
+  OpenCL (experimental: [details](docs/gpus-and-cooling.md#intel-graphics)).
 - **A fee you can read.** Published per algorithm and printed by the miner itself.
 
 <p align="center">
@@ -101,6 +103,7 @@ cards unless the release notes say otherwise.
 | Operating system | Windows 10 or 11 (64-bit); a current 64-bit Linux |
 | NVIDIA | a current driver (the release notes give the minimum) |
 | AMD | a current Adrenalin (Windows) or ROCm / amdgpu OpenCL (Linux) driver |
+| Intel | a current Intel graphics driver (Windows) or Intel's OpenCL runtime (Linux) |
 | CPU | any x86-64 CPU; the `v3` download needs AVX2 (Intel Haswell 2013, AMD Zen, or newer), `v2` runs on older ones |
 
 ## Quick start
@@ -132,7 +135,7 @@ good-miner-cli mine auto                 # mine the best coin you have a wallet 
 | --- | --- |
 | [Getting started](docs/getting-started.md) | from download to the first accepted share |
 | [Coins](docs/coins.md) | every coin with a ready command line |
-| [Hashrates](docs/hashrates.md) | what we measured, card by card, from the RTX 3070 to the H100 |
+| [Hashrates](docs/hashrates.md) | what we measured, card by card, from an Intel integrated GPU to the H100 |
 | [Cards, temperatures and overclock](docs/gpus-and-cooling.md) | choosing cards, two coins on one rig, fans, the memory tune |
 | [CPU mining](docs/cpu-mining.md) | threads, huge pages, RandomX speed |
 | [Dashboard, profit and the API](docs/dashboard.md) | phone pairing, `mine auto`, power price |

@@ -78,4 +78,6 @@ algorithm name after the ticker, as shown.
 - **Memory:** Ethash-family, KawPow-family and Cuckoo-family coins need several GB of GPU memory. The miner
   tells you at start if a card cannot hold a coin's dataset.
 - **AMD and NVIDIA:** GPU coins run on both unless the release notes say otherwise.
+- **Intel:** experimental, and proven so far on Qubitcoin (qhash) only
+  ([details](gpus-and-cooling.md#intel-graphics)).
 - **Missing a coin?** Open a coin request. Coins are added when they have an accepted share, not before.

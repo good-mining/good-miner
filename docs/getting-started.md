@@ -11,7 +11,7 @@ Prompt or PowerShell window opened in the miner's folder.
 | --- | --- |
 | A 64-bit x86 PC | Windows 10 or 11, or a current Linux |
 | A wallet address | for the coin you want to mine. Create it with the coin's own wallet or an exchange deposit address. The miner never creates or holds wallets. |
-| GPU drivers | **NVIDIA:** a current driver (the release notes give the minimum). **AMD:** current Adrenalin on Windows; on Linux the amdgpu driver with an OpenCL loader (`ocl-icd`), and ROCm's `hip-runtime-amd` for the fastest RX 9070 kernels. **CPU mining needs no driver.** |
+| GPU drivers | **NVIDIA:** a current driver (the release notes give the minimum). **AMD:** current Adrenalin on Windows; on Linux the amdgpu driver with an OpenCL loader (`ocl-icd`), and ROCm's `hip-runtime-amd` for the fastest RX 9070 kernels. **Intel:** a current Intel graphics driver on Windows; Intel's OpenCL runtime on Linux. **CPU mining needs no driver.** |
 | Room for the DAG | Ethash-family and KawPow-family coins need 4 to 8 GB of GPU memory; a few coins need more. The miner says so at start instead of failing later. |
 
 ## 2. Download and check

@@ -64,6 +64,14 @@ worse. Your numbers are welcome: see the end of this page.
 | Ravencoin (RVN) | KawPow | 39.1 MH/s | 203 W | 2026-10-27 |
 | Pearl (PRL) | PearlHash | 67.6 to 68.0 TH/s | capped at 164 W | 2026-10-20 |
 
+## Intel
+
+### Arc integrated graphics, Core Ultra (Arrow Lake), Windows
+
+| coin | algorithm | hashrate | date |
+| --- | --- | --- | --- |
+| Qubitcoin (QTC) | qhash | 147 MH/s | 2026-10-13 |
+
 ## CPU
 
 | CPU | coin | algorithm | hashrate | date |
@@ -74,7 +82,7 @@ worse. Your numbers are welcome: see the end of this page.
 ## More to come
 
 This table is short because we print only what we measured on that exact card. We are filling it in coin by
-coin for the cards on our own rig (RTX 3070, RTX 5060 Ti, RTX 5070, RX 9070) and for cards we rent.
+coin for the cards on our own rig (RTX 3070, RTX 5060 Ti, RTX 5070, RX 9070), Intel graphics, and cards we rent.
 
 ## Add your card
 

@@ -2,8 +2,8 @@
 
 ## About the miner
 
-**What is good-miner?** A miner written from scratch in Rust: one program for NVIDIA cards, AMD cards and
-CPUs, with its own dashboard, protection for your hardware, and a published fee.
+**What is good-miner?** A miner written from scratch in Rust: one program for NVIDIA, AMD and Intel graphics
+and CPUs, with its own dashboard, protection for your hardware, and a published fee.
 
 **Why is it closed source?** The developer fee is how the work is paid for, and an open miner's fee is removed
 by someone within a day. What we give instead: checksums and a changelog for every release, a fee published
@@ -43,6 +43,9 @@ your card than believe a claim.
 **Pool or solo?** A pool pays a little all the time. Solo (`solo`) pays a whole block when you find one and
 nothing otherwise; with a small rig on a large coin that can mean months. Solo makes sense when your rig is
 a visible fraction of the coin's network.
+
+**Does it work on Intel graphics?** Yes, experimentally, through OpenCL: tested on Core Ultra integrated
+graphics ([details](gpus-and-cooling.md#intel-graphics)). Add `igpu` to mine on an integrated GPU.
 
 **Can I mine two coins at once?** Yes: different coins on different cards, or a CPU coin beside a GPU coin
 ([cards and cooling](gpus-and-cooling.md#two-coins-on-one-rig)).
