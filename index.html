@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>good-miner: one miner for the whole rig</title>
+<meta name="description" content="good-miner is a cryptocurrency miner written from scratch in Rust. One program for NVIDIA, AMD and Intel graphics and CPUs, with auto profit switching and a built-in dashboard. Windows and Linux.">
+<meta property="og:title" content="good-miner">
+<meta property="og:description" content="One miner for the whole rig: NVIDIA, AMD, Intel and CPU, auto profit switching, a dashboard in your pocket.">
+<meta property="og:image" content="https://good-miner.com/img/dashboard-board.png">
+<meta property="og:url" content="https://good-miner.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 28 9v14l-12 7L4 23V9z' fill='none' stroke='%23f2b84b' stroke-width='2.6' stroke-linejoin='round'/%3E%3Cpath d='M16 23V11m-5 5 5-5 5 5' fill='none' stroke='%23f2b84b' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#0c0f14;--panel:#151a23;--line:#242b38;--text:#e9ecf1;--muted:#98a2b3;--amber:#f2b84b;--green:#5fd068;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(12,15,20,.92);backdrop-filter:blur(8px);z-index:5}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--text);font-weight:700;font-size:19px}
+.brand svg{width:28px;height:28px}
+nav{display:flex;gap:22px;font-size:15px}
+nav a{color:var(--muted)}
+nav a:hover{color:var(--text);text-decoration:none}
+.hero{padding:72px 0 40px;text-align:center}
+.tag{display:inline-block;border:1px solid var(--line);color:var(--amber);border-radius:999px;padding:4px 14px;font-size:13.5px;margin-bottom:22px}
+h1{font-size:clamp(34px,6vw,58px);line-height:1.08;margin:0 0 18px;letter-spacing:-.02em}
+h1 span{color:var(--amber)}
+.lead{color:var(--muted);font-size:clamp(17px,2.2vw,20px);max-width:720px;margin:0 auto 30px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 24px;border-radius:12px;font-weight:650;font-size:16px}
+.btn.primary{background:var(--amber);color:#17130a}
+.btn.ghost{border:1px solid var(--line);color:var(--text)}
+.btn:hover{text-decoration:none;filter:brightness(1.07)}
+.note{color:var(--muted);font-size:14.5px;margin-top:16px}
+.phones{display:flex;gap:22px;justify-content:center;padding:44px 0 10px;flex-wrap:wrap}
+.phones figure{margin:0;width:250px}
+.phones img{width:100%;height:auto;border-radius:26px;border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.5);display:block}
+.phones figcaption{color:var(--muted);font-size:14px;text-align:center;margin-top:10px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(25px,3.4vw,34px);margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 30px;max-width:720px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card h3{margin:0 0 6px;font-size:18px}
+.card p{margin:0;color:var(--muted);font-size:15.5px}
+pre{background:#0a0d12;border:1px solid var(--line);border-radius:14px;padding:18px 20px;overflow-x:auto;font:14.5px/1.7 var(--mono);margin:0}
+pre .c{color:#6b7689}
+pre .p{color:var(--green)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.two>*{min-width:0}
+table{width:100%;border-collapse:collapse;font-size:15.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;font-size:13.5px;text-transform:uppercase;letter-spacing:.04em}
+td.n{font-family:var(--mono);white-space:nowrap}
+.tablewrap{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:6px 10px;overflow-x:auto}
+.pill{display:inline-block;background:#1d2430;border:1px solid var(--line);border-radius:8px;padding:3px 10px;margin:3px 4px 3px 0;font:13.5px var(--mono);color:var(--text)}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--muted);font-size:14.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:760px){nav{display:none}.two{grid-template-columns:1fr}.hero{padding-top:48px}.phones figure{width:78%;max-width:300px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 28 9v14l-12 7L4 23V9z" fill="none" stroke="#f2b84b" stroke-width="2.6" stroke-linejoin="round"/><path d="M16 23V11m-5 5 5-5 5 5" fill="none" stroke="#f2b84b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>good-miner</a>
+  <nav><a href="#why">Why</a><a href="#start">Quick start</a><a href="#numbers">Hashrates</a><a href="#fee">Fee</a><a href="https://github.com/good-mining/good-miner">GitHub</a></nav>
+</div></header>
+
+<main>
+<div class="wrap hero">
+  <div class="tag">Public beta in preparation</div>
+  <h1>One miner for <span>the whole rig</span></h1>
+  <p class="lead">good-miner is written from scratch in Rust. One program mines on NVIDIA, AMD and Intel graphics and on CPUs, picks the most profitable coin for your hardware, and puts a dashboard in your pocket.</p>
+  <div class="cta">
+    <a class="btn primary" href="https://github.com/good-mining/good-miner">Documentation on GitHub</a>
+    <a class="btn ghost" href="https://github.com/good-mining/good-miner/releases">Releases</a>
+  </div>
+  <p class="note">The first public beta download is being prepared. Watch the repository to hear when it lands.</p>
+  <div class="phones">
+    <figure><img src="img/dashboard-board.png" width="780" height="1688" alt="Profit board on a phone: the coins this rig would earn most on, with the auto pick"><figcaption>Profit board and the auto pick</figcaption></figure>
+    <figure><img src="img/dashboard-rig.png" width="780" height="1688" alt="Rig view on a phone: hashrate, shares, pool and estimated earnings per coin"><figcaption>The rig, live</figcaption></figure>
+    <figure><img src="img/dashboard-market.png" width="780" height="1688" alt="Market view on a phone: the market's top coins beside this rig's own figures"><figcaption>The market beside your rig</figcaption></figure>
+  </div>
+</div>
+
+<section id="why"><div class="wrap">
+  <h2>Why good-miner</h2>
+  <p class="sub">Built by miners who run it around the clock on their own rig.</p>
+  <div class="grid">
+    <div class="card"><h3>It picks the coin for you</h3><p><code>mine auto</code> ranks every coin by what your cards measured, the coin's live network figures and price, and your power cost. It mines the best one and switches when the ranking changes.</p></div>
+    <div class="card"><h3>One program, every device</h3><p>NVIDIA, AMD, Intel and CPU together. Different coins on different cards, a CPU coin beside a GPU coin, all on one dashboard.</p></div>
+    <div class="card"><h3>A dashboard in your pocket</h3><p>Built in. No account, no cloud. Pair your phone with a six-digit code and watch, stop or switch from anywhere on your network.</p></div>
+    <div class="card"><h3>It looks after the hardware</h3><p>Temperature guards per card, a watcher that restarts a crashed miner and stops one that is sending bad work, fans and clocks put back on exit.</p></div>
+    <div class="card"><h3>Runs the new cards</h3><p>RTX 50-series and RX 9070 are first-class, including on Linux. Experimental Intel SPIR-V support for Arc graphics.</p></div>
+    <div class="card"><h3>A fee you can read</h3><p>Published per algorithm, between 0.65 % and 1.5 %, and printed by the miner itself. No surprises.</p></div>
+  </div>
+</div></section>
+
+<section id="start"><div class="wrap two">
+  <div>
+    <h2>Quick start</h2>
+    <p class="sub">Plain words, no dashes. Give a coin and your own wallet address.</p>
+    <p><a href="https://github.com/good-mining/good-miner/blob/main/docs/getting-started.md">Getting started</a> walks through it from download to the first accepted share. <a href="https://github.com/good-mining/good-miner/blob/main/docs/coins.md">Coins</a> has a ready command line for each of the 54 coins.</p>
+    <p>
+      <span class="pill">RVN</span><span class="pill">XMR</span><span class="pill">PRL</span><span class="pill">QTC</span><span class="pill">CFX</span><span class="pill">ETC</span><span class="pill">ERG</span><span class="pill">ALPH</span><span class="pill">NEX</span><span class="pill">GRIN</span><span class="pill">ZEPH</span><span class="pill">XEL</span><span class="pill">+42 more</span>
+    </p>
+  </div>
+  <pre><span class="c"># mine a coin</span>
+<span class="p">$</span> good-miner-cli mine rvn wallet &lt;your address&gt;
+
+<span class="c"># choose the pool yourself</span>
+<span class="p">$</span> good-miner-cli mine rvn url stratum.ravenminer.com:3838 \
+    wallet &lt;your address&gt; pass x
+
+<span class="c"># let it choose the most profitable coin</span>
+<span class="p">$</span> good-miner-cli util benchmark rvn
+<span class="p">$</span> good-miner-cli config set kwh 0.18
+<span class="p">$</span> good-miner-cli mine auto
+
+<span class="c"># pair your phone with the dashboard</span>
+<span class="p">$</span> good-miner-cli util pair</pre>
+</div></section>
+
+<section id="numbers"><div class="wrap">
+  <h2>Measured, not promised</h2>
+  <p class="sub">We publish only numbers we measured ourselves, on the card named, beside the best other miner we could run on that card that day. Including where we are behind.</p>
+  <div class="tablewrap"><table>
+    <tr><th>Card</th><th>Coin</th><th>good-miner</th><th>Best other miner we ran</th><th>Measured</th></tr>
+    <tr><td>RTX 5070</td><td>Conflux (Octopus)</td><td class="n">76.9 MH/s</td><td>lolMiner 1.98a: 77.4 MH/s</td><td class="n">2026-10-07</td></tr>
+    <tr><td>RX 9070</td><td>Conflux (Octopus)</td><td class="n">76.7 MH/s</td><td>lolMiner 1.98a: 77.2 MH/s</td><td class="n">2026-10-08</td></tr>
+    <tr><td>RX 9070</td><td>Ravencoin (KawPow)</td><td class="n">39.1 MH/s</td><td>SRBMiner-Multi 3.7.6: 39.0 to 39.4 MH/s</td><td class="n">2026-10-27</td></tr>
+    <tr><td>RX 9070</td><td>Pearl (PearlHash)</td><td class="n">67.6 to 68.0 TH/s</td><td>SRBMiner-Multi 3.7.6: 67.6 to 69.4 TH/s</td><td class="n">2026-10-20</td></tr>
+    <tr><td>RTX 5060 Ti</td><td>Nexa (NexaPow)</td><td class="n">82.4 MH/s</td><td>Rigel 1.23.2: 105.2 MH/s</td><td class="n">2026-10-29</td></tr>
+  </table></div>
+  <p class="note">More cards, from Intel integrated graphics to the RTX 4090, RTX 5090 and H100: <a href="https://github.com/good-mining/good-miner/blob/main/docs/hashrates.md">the hashrates page</a>.</p>
+</div></section>
+
+<section id="fee"><div class="wrap two">
+  <div>
+    <h2>The developer fee</h2>
+    <p class="sub">good-miner is free to use. It pays for its development with a fee: for a small part of the time it mines for us instead of you.</p>
+    <p>The rate depends on the algorithm and is fixed in each release. <code>good-miner-cli list algorithms</code> prints it for the copy you run.</p>
+    <p>The source is closed, because an open miner's fee is removed within a day. In exchange: checksums and a changelog for every release, a published fee, and public answers on GitHub.</p>
+  </div>
+  <div class="tablewrap"><table>
+    <tr><th>Algorithms</th><th>Fee</th></tr>
+    <tr><td>Ethash, Etchash</td><td class="n">0.65 %</td></tr>
+    <tr><td>kHeavyHash family</td><td class="n">0.75 %</td></tr>
+    <tr><td>RandomX, CryptoNight, Yespower, KawPow / ProgPoW, FishHash, BLAKE3</td><td class="n">0.85 %</td></tr>
+    <tr><td>Cuckoo family, Octopus</td><td class="n">1.5 %</td></tr>
+    <tr><td>Everything else</td><td class="n">1 %</td></tr>
+  </table></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div>good-miner &copy; 2026 the good-miner developers. All rights reserved.</div>
+  <div><a href="https://github.com/good-mining/good-miner">GitHub</a> &nbsp;·&nbsp; <a href="https://github.com/good-mining/good-miner/blob/main/SECURITY.md">Security</a> &nbsp;·&nbsp; <a href="https://github.com/good-mining/good-miner/issues">Report a problem</a></div>
+</div></footer>
+</body>
+</html>
