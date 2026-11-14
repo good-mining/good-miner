@@ -22,8 +22,8 @@ CPUs, on Windows and Linux, and brings its own web dashboard.
 - **It looks after the hardware.** Per-card temperature guards, a watcher that restarts a crashed miner and
   stops one that is sending bad work, fans and clocks put back on exit.
 - **Runs the new cards.** RTX 50-series and RX 9070 are first-class, including on Linux.
-- **Intel graphics too.** Arc graphics, including the integrated GPU in Core Ultra processors, mine through
-  OpenCL (experimental: [details](docs/gpus-and-cooling.md#intel-graphics)).
+- **Intel graphics too.** Experimental Intel SPIR-V support: Arc graphics, including the integrated GPU in
+  Core Ultra processors ([what is tested](docs/gpus-and-cooling.md#intel-graphics)).
 - **A fee you can read.** Published per algorithm and printed by the miner itself.
 
 <p align="center">

@@ -20,17 +20,22 @@ Integrated graphics are left out unless you ask: `igpu` for one run, `config set
 
 ## Intel graphics
 
-Intel GPUs mine through OpenCL. This is **experimental**: it is the newest hardware path and the least
-tested.
+**Experimental Intel SPIR-V support.** Intel GPUs mine through OpenCL, with kernels built as SPIR-V. It is
+the newest hardware path and the least tested.
 
-- **Tested:** the integrated Arc graphics of a Core Ultra (Arrow Lake) processor on Windows, mining
-  Qubitcoin (qhash) at 147 MH/s.
-- **Built but not yet proven on Intel hardware:** most other GPU algorithms have an Intel build in the
-  release. If one fails or gets its shares rejected on your Intel GPU, please report it with the log.
+| | |
+| --- | --- |
+| Tested on | the integrated Arc graphics of a Core Ultra (Arrow Lake) processor, Windows |
+| Mining, with accepted shares | Qubitcoin (qhash): 147 MH/s |
+| Checked hash-for-hash against the CPU reference | Verthash (Vertcoin), Equihash (Zcash) |
+| Known not to work yet | Octopus (Conflux) |
+| Everything else | has an Intel build in the release and has not been proven on Intel hardware by us |
+
 - **Discrete Arc cards** should work the same way. We have not had one to test, so we do not claim it.
 - An integrated GPU shares the system's memory and power with the CPU: expect modest rates, and expect CPU
   mining on the same machine to slow it down. It is opt-in for that reason (`igpu`).
 - The miner does not control fans or clocks on Intel GPUs.
+- If an algorithm fails or gets its shares rejected on your Intel GPU, please report it with the log.
 
 ## Two coins on one rig
 
