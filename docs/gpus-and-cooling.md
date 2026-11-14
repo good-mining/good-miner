@@ -26,13 +26,11 @@ tested.
 - **Tested:** the integrated Arc graphics of a Core Ultra (Arrow Lake) processor on Windows, mining
   Qubitcoin (qhash) at 147 MH/s.
 - **Built but not yet proven on Intel hardware:** most other GPU algorithms have an Intel build in the
-  release. If one fails or hashes wrong on your Intel GPU, the miner's own check refuses the bad shares
-  rather than sending them; please report it.
+  release. If one fails or gets its shares rejected on your Intel GPU, please report it with the log.
 - **Discrete Arc cards** should work the same way. We have not had one to test, so we do not claim it.
 - An integrated GPU shares the system's memory and power with the CPU: expect modest rates, and expect CPU
   mining on the same machine to slow it down. It is opt-in for that reason (`igpu`).
-- Fan and clock control do not apply to Intel GPUs; the temperature guards still do where the driver
-  reports a temperature.
+- The miner does not control fans or clocks on Intel GPUs.
 
 ## Two coins on one rig
 
