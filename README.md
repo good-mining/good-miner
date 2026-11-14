@@ -135,6 +135,7 @@ good-miner-cli mine auto                 # mine the best coin you have a wallet 
 | --- | --- |
 | [Getting started](docs/getting-started.md) | from download to the first accepted share |
 | [Coins](docs/coins.md) | every coin with a ready command line |
+| [Your own coin list](docs/coin-lists.md) | import a CSV or JSON: your wallets, your pools, your coins, on every rig |
 | [Hashrates](docs/hashrates.md) | what we measured, card by card, from an Intel integrated GPU to the H100 |
 | [Cards, temperatures and overclock](docs/gpus-and-cooling.md) | choosing cards, two coins on one rig, fans, the memory tune |
 | [CPU mining](docs/cpu-mining.md) | threads, huge pages, RandomX speed |
@@ -152,8 +153,9 @@ us instead of you. The rate depends on the algorithm and is fixed in each releas
 | algorithms | fee |
 | --- | --- |
 | Ethash, Etchash | 0.65 % |
-| kHeavyHash family | 0.75 % |
-| RandomX, CryptoNight, Yespower, KawPow / ProgPoW, FishHash, BLAKE3 | 0.85 % |
+| kHeavyHash family, Alephium | 0.75 % |
+| RandomX, CryptoNight, Yespower, KawPow / ProgPoW, FishHash, BLAKE3 (Decred) | 0.85 % |
+| NexaPow, PearlHash, Quantus | 1.25 % |
 | Cuckoo family, Octopus | 1.5 % |
 | everything else | 1 % |
 

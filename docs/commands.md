@@ -21,6 +21,7 @@ The miner's own `help` is always right for the build you have; this page is the 
 | `config` | saved settings: per coin (pool, wallet, worker, threads) and for this machine (cards, UI, power price) |
 | `device` | `device list`; `device amd-restore` puts AMD cards back on factory tuning |
 | `stats` | `stats hashrates` (your benchmarks), `stats blocks`, `stats fee` |
+| `db` | `db import <file>` and `db export <file>`: your coin list as CSV or JSON ([how](coin-lists.md)) |
 | `util` | tools: `benchmark <coin>`, `profit`, `pair`, `api`, `probe <host:port>`, `validate-pool <url>`, `nvrtc`, `hiprtc`, `oc-autotune`, `trace`, `dump` |
 | `version` | the build you have |
 

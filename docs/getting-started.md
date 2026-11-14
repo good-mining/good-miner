@@ -45,7 +45,8 @@ fix the driver before going further ([troubleshooting](troubleshooting.md)).
 ./good-miner-cli coin show rvn          # one coin: algorithm, hardware, its default pool
 ```
 
-[coins.md](coins.md) lists every coin with a ready command line.
+[coins.md](coins.md) lists every coin with a ready command line. To load your own wallets and pools for many
+coins at once, or to add a coin, see [your own coin list](coin-lists.md).
 
 ## 5. Mine
 
