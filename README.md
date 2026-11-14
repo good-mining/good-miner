@@ -132,6 +132,7 @@ good-miner-cli mine auto                 # mine the best coin you have a wallet 
 | --- | --- |
 | [Getting started](docs/getting-started.md) | from download to the first accepted share |
 | [Coins](docs/coins.md) | every coin with a ready command line |
+| [Hashrates](docs/hashrates.md) | what we measured, card by card, from the RTX 3070 to the H100 |
 | [Cards, temperatures and overclock](docs/gpus-and-cooling.md) | choosing cards, two coins on one rig, fans, the memory tune |
 | [CPU mining](docs/cpu-mining.md) | threads, huge pages, RandomX speed |
 | [Dashboard, profit and the API](docs/dashboard.md) | phone pairing, `mine auto`, power price |
@@ -168,7 +169,8 @@ other miner we could run on the same card that day.
 | RX 9070 | Pearl (PearlHash) | 67.6 to 68.0 TH/s | SRBMiner-Multi 3.7.6: 67.6 to 69.4 TH/s, same power cap | 2026-10-20 |
 | RTX 5060 Ti | Nexa (NexaPow) | 82.4 MH/s | Rigel 1.23.2: 105.2 MH/s | 2026-10-29 |
 
-Measured on our own rig with the build of that date. They are re-measured for each release.
+Measured on our own rig with the build of that date. They are re-measured for each release. More cards and
+coins: [hashrates](docs/hashrates.md).
 
 ## Closed source
 
