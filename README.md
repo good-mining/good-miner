@@ -1,4 +1,6 @@
-# good-miner
+<p align="center"><img src="docs/images/logo.svg" width="128" alt="good-miner logo"></p>
+
+<h1 align="center">good-miner</h1>
 
 A cryptocurrency miner written from scratch in Rust. One binary mines on NVIDIA, AMD and Intel graphics and on
 CPUs, on Windows and Linux, and brings its own web dashboard.
